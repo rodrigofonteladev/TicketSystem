@@ -7,7 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.16" />
+    <ProjectReference Include="..\TicketSystem.Domain\TicketSystem.Domain.csproj" />
+    <ProjectReference Include="..\TicketSystem.Application\TicketSystem.Application.csproj" />
+    <ProjectReference Include="..\TicketSystem.Infrastructure\TicketSystem.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
