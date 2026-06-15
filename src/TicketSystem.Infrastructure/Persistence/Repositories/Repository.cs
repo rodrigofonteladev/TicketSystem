@@ -1,32 +1,30 @@
+using Microsoft.EntityFrameworkCore;
 using TicketSystem.Application.Interfaces.Persistence;
+using TicketSystem.Infrastructure.Data;
 
 namespace TicketSystem.Infrastructure.Persistence.Repositories
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        public Task<IEnumerable<T>> GetAllAsync()
+        private readonly AppDbContext _context;
+        private readonly DbSet<T> _dbSet;
+
+        public Repository(AppDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+            _dbSet = context.Set<T>();
         }
-        public Task<T?> GetByIdAsync(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-        public Task AddAsync(T entity)
-        {
-            throw new NotImplementedException();
-        }
-        public void Update(T entity)
-        {
-            throw new NotImplementedException();
-        }
-        public void Delete(T entity)
-        {
-            throw new NotImplementedException();
-        }
-        public Task<bool> SaveChangesAsync()
-        {
-            throw new NotImplementedException();
-        }
+
+        public async Task<IEnumerable<T>> GetAllAsync() => await _dbSet.ToListAsync();
+
+        public async Task<T?> GetByIdAsync(Guid id) => await _dbSet.FindAsync(id);
+
+        public async Task AddAsync(T entity) => await _dbSet.AddAsync(entity);
+
+        public void Update(T entity) => _dbSet.Update(entity);
+
+        public void Delete(T entity) => _dbSet.Remove(entity);
+
+        public async Task<bool> SaveChangesAsync() => await _context.SaveChangesAsync() > 0;
     }
 }
