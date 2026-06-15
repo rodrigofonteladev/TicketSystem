@@ -9,7 +9,7 @@ namespace TicketSystem.Domain.Entities
         public string SecureUrl { get; set; } = null!;
         public required string MimeType { get; set; }
         public long FileSize { get; set; }
-        public Guid UploadedByUserId { get; set; }
+        public required string UploadedByUserId { get; set; }
 
         public Guid TicketId { get; set; }
         public Ticket Ticket { get; set; } = null!;
