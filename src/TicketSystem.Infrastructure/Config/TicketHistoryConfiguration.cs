@@ -8,7 +8,7 @@ namespace TicketSystem.Infrastructure.Config
     {
         public void Configure(EntityTypeBuilder<TicketHistory> builder)
         {
-            builder.Property(col => col.UserId).HasMaxLength(16).IsRequired();
+            builder.Property(col => col.UserId).HasMaxLength(450).IsRequired();
             builder.Property(col => col.FieldName).HasMaxLength(50);
             builder.Property(col => col.OldValue).HasMaxLength(500);
             builder.Property(col => col.NewValue).HasMaxLength(500);
@@ -16,7 +16,8 @@ namespace TicketSystem.Infrastructure.Config
             builder
             .HasOne(th => th.Ticket)
             .WithMany(t => t.TicketHistories)
-            .HasForeignKey(th => th.TicketId);
+            .HasForeignKey(th => th.TicketId)
+            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

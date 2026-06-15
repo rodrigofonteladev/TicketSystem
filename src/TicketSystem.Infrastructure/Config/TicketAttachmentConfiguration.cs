@@ -12,11 +12,12 @@ namespace TicketSystem.Infrastructure.Config
             builder.Property(col => col.CloudinaryPublicId).IsRequired();
             builder.Property(col => col.SecureUrl).IsRequired();
             builder.Property(col => col.MimeType).HasMaxLength(50);
-            builder.Property(col => col.UploadedByUserId).HasMaxLength(16);
+            builder.Property(col => col.UploadedByUserId).HasMaxLength(450);
             builder
             .HasOne(ta => ta.Ticket)
             .WithMany(t => t.Attachments)
-            .HasForeignKey(ta => ta.TicketId);
+            .HasForeignKey(ta => ta.TicketId)
+            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

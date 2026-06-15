@@ -12,12 +12,13 @@ namespace TicketSystem.Infrastructure.Config
             builder.Property(col => col.Description).HasMaxLength(500);
             builder.Property(col => col.Status).HasConversion<string>();
             builder.Property(col => col.Priority).HasConversion<string>();
-            builder.Property(col => col.CreatedByUserId).HasMaxLength(16);
-            builder.Property(col => col.AssignedByUserId).HasMaxLength(16);
+            builder.Property(col => col.CreatedByUserId).HasMaxLength(450);
+            builder.Property(col => col.AssignedByUserId).HasMaxLength(450);
             builder
             .HasOne(t => t.Category)
             .WithMany(c => c.Tickets)
-            .HasForeignKey(t => t.CategoryId);
+            .HasForeignKey(t => t.CategoryId)
+            .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
