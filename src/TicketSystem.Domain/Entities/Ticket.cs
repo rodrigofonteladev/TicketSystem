@@ -7,7 +7,7 @@ namespace TicketSystem.Domain.Entities
     {
         public required string Title { get; set; }
         public string? Description { get; set; }
-        public TicketStatus Status { get; set; } = TicketStatus.OPEN;
+        public TicketStatus Status { get; set; } = TicketStatus.Open;
         public TicketPriority Priority { get; set; }
         public required string CreatedByUserId { get; set; }
         public string? AssignedByUserId { get; set; }
