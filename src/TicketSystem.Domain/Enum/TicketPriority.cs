@@ -2,8 +2,8 @@ namespace TicketSystem.Domain.Enum
 {
     public enum TicketPriority
     {
-        LOW,
-        MEDIUM,
-        HIGH
+        Low,
+        Medium,
+        High
     }
 }
